@@ -28,7 +28,6 @@ class TableGUI(tk.Tk):
         self.enter_game_button.destroy()
 
     def show_waiting_screen(self, ip, as_guest):
-        self.hide_connection_screen()
         self.waiting_label = tk.Label(self, text="Waiting for connection...")
         self.waiting_label.grid(row=0, column=0)
         self.ip_label = tk.Label(self, text=f"{'Connecting to' if as_guest else 'Your ip'}: {ip}")
@@ -40,7 +39,6 @@ class TableGUI(tk.Tk):
 
     def give_up(self):
         self.give_up_sender()
-        self.show_disconnected_screen()
 
     def get_score_text(self):
         return f"P1 ({self.table.score[0]}x{self.table.score[1]}) P2"
@@ -90,7 +88,6 @@ class TableGUI(tk.Tk):
         self.give_up_button.destroy()
 
     def show_disconnected_screen(self):
-        self.hide_game_screen()
         self.disconnected_label = tk.Label(self, text="The game was ended", font=("Arial", 20), width=30, height=10)
         self.disconnected_label.grid(row=0, column=0, columnspan=3)
         def show_connection_screen():
@@ -104,7 +101,6 @@ class TableGUI(tk.Tk):
         self.disconnected_button.destroy()
 
     def start_game(self, message_sender, move_sender, give_up_sender, player):
-        self.hide_waiting_screen()
         self.show_game_screen()
         self.message_sender = message_sender
         self.move_sender = move_sender
